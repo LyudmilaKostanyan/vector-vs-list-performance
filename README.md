@@ -37,11 +37,13 @@ Here is an example of how the code works with 20,000 numbers (`N = 20000`) and a
 
 ### Output:
 ```
-Insertion Time: Vector = 867.639ms, List = 1557.21ms
-Deletion Time: Vector = 192.868ms, List = 820.498ms
-Vector is 4.25419 times faster than List in total operations.
+Operation           List (ms)      Vector (ms)    Speedup (x)    
+-----------------------------------------------------------------
+Insertion Time      1597.52        856.49         1.87           
+Deletion Time       832.87         176.84         4.71           
+Total Time          2430.39        1033.33        2.35    
 ```
-
+In this case, as we can see, Vector is 2.35 times faster than List in total operations.
 This output shows that for both insertions and deletions, the `std::vector` container performs better than `std::list`.
 
 ## Explanation of Results
