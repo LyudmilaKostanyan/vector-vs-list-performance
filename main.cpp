@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <chrono>
+#include <iomanip>
 
 const int N = 20000;
 const int MAX_VALUE = 20000;
@@ -38,7 +39,7 @@ int main() {
         insert_sorted(vec, value);
     }
     auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double, std::milli> vector_time = end - start;
+    std::chrono::duration<double, std::milli> vector_insert_time = end - start;
 
     start = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < N; ++i) {
@@ -46,9 +47,7 @@ int main() {
         insert_sorted(lst, value);
     }
     end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double, std::milli> list_time = end - start;
-
-    std::cout << "Insertion Time: Vector = " << vector_time.count() << "ms, List = " << list_time.count() << "ms\n";
+    std::chrono::duration<double, std::milli> list_insert_time = end - start;
 
     start = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < N && !vec.empty(); ++i) {
@@ -56,7 +55,7 @@ int main() {
         remove_by_index(vec, index);
     }
     end = std::chrono::high_resolution_clock::now();
-    vector_time = end - start;
+    std::chrono::duration<double, std::milli> vector_del_time = end - start;
 
     start = std::chrono::high_resolution_clock::now();
     for (int i = 0; i < N && !lst.empty(); ++i) {
@@ -64,11 +63,31 @@ int main() {
         remove_by_index(lst, index);
     }
     end = std::chrono::high_resolution_clock::now();
-    list_time = end - start;
+    std::chrono::duration<double, std::milli> list_del_time = end - start;
 
-    std::cout << "Deletion Time: Vector = " << vector_time.count() << "ms, List = " << list_time.count() << "ms\n";
+    std::cout << std::setw(20) << std::left << "Operation"
+              << std::setw(15) << "List (ms)"
+              << std::setw(15) << "Vector (ms)"
+              << std::setw(15) << "Speedup (x)" << std::endl;
+    std::cout << std::string(65, '-') << std::endl;
+          
 
-    std::cout << "Vector is " << (list_time.count() + list_time.count()) / (vector_time.count() + vector_time.count()) << " times faster than List in total operations.\n";
+    std::cout << std::setw(20) << "Insertion Time"
+              << std::setw(15) << std::fixed << std::setprecision(2) << list_insert_time.count()
+              << std::setw(15) << std::fixed << std::setprecision(2) << vector_insert_time.count() << std::setw(15) << std::fixed << std::setprecision(2) << (list_insert_time.count() / vector_insert_time.count()) << std::endl;
+
+    std::cout << std::setw(20) << "Deletion Time"
+              << std::setw(15) << std::fixed << std::setprecision(2) << list_del_time.count()
+              << std::setw(15) << std::fixed << std::setprecision(2) << vector_del_time.count() 
+              << std::setw(15) << std::fixed << std::setprecision(2) << (list_del_time.count() / vector_del_time.count()) << std::endl;
+
+    std::cout << std::setw(20) << "Total Time"
+              << std::setw(15) << std::fixed << std::setprecision(2)
+              << list_insert_time.count() + list_del_time.count()
+              << std::setw(15) << std::fixed << std::setprecision(2)
+              << vector_insert_time.count() + vector_del_time.count() 
+              << std::setw(15) << std::fixed << std::setprecision(2)
+              << (list_insert_time.count() + list_del_time.count()) / (vector_insert_time.count() + vector_del_time.count()) << std::endl;
 
     return 0;
 }
