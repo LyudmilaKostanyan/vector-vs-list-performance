@@ -2,6 +2,15 @@
 
 This repository contains a simple program that compares the performance of `std::vector` and `std::list` when performing sorted insertions and random deletions. The goal is to explore how the different underlying memory structures of these containers affect performance, particularly in terms of CPU cache efficiency.
 
+## Table of Contents
+- [Problem Statement](#problem-statement)
+- [Example](#example)
+- [Explanation of Results](#explanation-of-results)
+  - [1. CPU Caches](#1-cpu-caches)
+  - [2. Cache Line](#2-cache-line)
+  - [3. Prefetching](#3-prefetching)
+- [How to Compile and Run the Code](#how-to-compile-and-run-the-code)
+
 ## Problem Statement
 
 The program compares the performance of `std::vector` and `std::list` when inserting and deleting elements while keeping the container sorted.  
