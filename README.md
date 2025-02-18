@@ -4,13 +4,17 @@ This repository contains a simple program that compares the performance of `std:
 
 ## Problem Statement
 
-The program benchmarks the time taken to insert elements into both a `std::vector` and a `std::list`, maintaining sorted order during insertions, and then measures the time taken to delete elements by random index. The program runs these operations multiple times to gather performance data.
+The program compares the performance of `std::vector` and `std::list` when inserting and deleting elements while keeping the container sorted.  
 
-### The main operations performed:
-1. **Insertion**: Insert random elements into the containers while maintaining sorted order.
-2. **Deletion**: Remove elements by randomly chosen index from both containers.
+### Steps:  
+1. **Insertion:**  
+   - Random integers are generated and inserted into both a `std::vector` and a `std::list` while maintaining sorted order.  
 
-The goal is to analyze the time taken for these operations and compare the performance of `std::vector` and `std::list`.
+2. **Deletion:**  
+   - A random index is generated, and the element at that index is removed.  
+   - To ensure fair comparison, the element in both `std::vector` and `std::list` is found through linear iteration before removal, avoiding direct indexing in the vector.  
+
+All algorithms are implemented with linear time complexity to maintain a fair comparison, ensuring that std::vector does not gain an advantage due to direct indexing during element removal.
 
 ## Example
 
