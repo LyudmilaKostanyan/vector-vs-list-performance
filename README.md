@@ -24,7 +24,7 @@ The program compares the performance of `std::vector` and `std::list` when inser
 
 ## Example
 
-Here is an example of how the code works:
+Here is an example of how the code works with 20,000 numbers (N = 20000) and a maximum random value of 20,000 (MAX_VALUE = 20000):
 
 ### Output:
 ```
