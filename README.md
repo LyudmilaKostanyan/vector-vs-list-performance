@@ -14,6 +14,14 @@ The program compares the performance of `std::vector` and `std::list` when inser
    - A random index is generated, and the element at that index is removed.  
    - To ensure fair comparison, the element in both `std::vector` and `std::list` is found through linear iteration before removal, avoiding direct indexing in the vector.  
 
+### Customization:  
+- The number of elements (`N`) and the maximum random value (`MAX_VALUE`) can be adjusted using the constants:  
+  ```cpp
+  const int N = 10000;        // Number of insertions and deletions  
+  const int MAX_VALUE = 100; // Maximum random value  
+  ```
+  Changing these values allows control over the experiment size and range of generated numbers.
+
 ## Example
 
 Here is an example of how the code works:
