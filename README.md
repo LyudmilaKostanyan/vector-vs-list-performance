@@ -14,8 +14,6 @@ The program compares the performance of `std::vector` and `std::list` when inser
    - A random index is generated, and the element at that index is removed.  
    - To ensure fair comparison, the element in both `std::vector` and `std::list` is found through linear iteration before removal, avoiding direct indexing in the vector.  
 
-All algorithms are implemented with linear time complexity to maintain a fair comparison, ensuring that std::vector does not gain an advantage due to direct indexing during element removal.
-
 ## Example
 
 Here is an example of how the code works:
