@@ -66,11 +66,10 @@ A **cache line** is a small, fixed-size chunk of memory that the CPU fetches int
 ## How to Compile and Run the Code
 
 1. **Install a C++ Compiler:**
-   - If you're using Linux, you can install `g++` by running:
+   - If you're using Linux or macOS, you can install `g++` by running:
      ```bash
      sudo apt install g++
      ```
-   - On macOS, you can use `clang++`, which comes with Xcode.
    - On Windows, you can use MinGW or Microsoft Visual Studio.
 
 2. **Clone the repository:**
