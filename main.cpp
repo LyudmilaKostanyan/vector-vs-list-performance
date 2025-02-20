@@ -28,6 +28,37 @@ void remove_by_index(Container& cont, size_t index) {
     cont.erase(it);
 }
 
+void print_results(auto vector_insert_time, auto list_insert_time, auto vector_del_time, auto list_del_time)
+{
+    std::cout << std::setw(20) << std::left << "Operation"
+              << std::setw(15) << "List (ms)"
+              << std::setw(15) << "Vector (ms)"
+              << std::setw(15) << "Speedup (x)" << std::endl;
+    std::cout << std::string(65, '-') << std::endl;
+          
+
+    std::cout << std::setw(20) << "Insertion Time"
+              << std::setw(15) << std::fixed << std::setprecision(2) << list_insert_time.count()
+              << std::setw(15) << std::fixed << std::setprecision(2) << vector_insert_time.count()
+              << std::setw(15) << std::fixed << std::setprecision(2)
+              << (list_insert_time.count() / vector_insert_time.count()) << std::endl;
+
+    std::cout << std::setw(20) << "Deletion Time"
+              << std::setw(15) << std::fixed << std::setprecision(2) << list_del_time.count()
+              << std::setw(15) << std::fixed << std::setprecision(2) << vector_del_time.count() 
+              << std::setw(15) << std::fixed << std::setprecision(2)
+              << (list_del_time.count() / vector_del_time.count()) << std::endl;
+
+    std::cout << std::setw(20) << "Total Time"
+              << std::setw(15) << std::fixed << std::setprecision(2)
+              << list_insert_time.count() + list_del_time.count()
+              << std::setw(15) << std::fixed << std::setprecision(2)
+              << vector_insert_time.count() + vector_del_time.count() 
+              << std::setw(15) << std::fixed << std::setprecision(2)
+              << (list_insert_time.count() + list_del_time.count())
+              / (vector_insert_time.count() + vector_del_time.count()) << std::endl;
+}
+
 int main() {
     std::srand(std::time(0));
     std::vector<int> vec;
@@ -65,29 +96,7 @@ int main() {
     end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double, std::milli> list_del_time = end - start;
 
-    std::cout << std::setw(20) << std::left << "Operation"
-              << std::setw(15) << "List (ms)"
-              << std::setw(15) << "Vector (ms)"
-              << std::setw(15) << "Speedup (x)" << std::endl;
-    std::cout << std::string(65, '-') << std::endl;
-          
-
-    std::cout << std::setw(20) << "Insertion Time"
-              << std::setw(15) << std::fixed << std::setprecision(2) << list_insert_time.count()
-              << std::setw(15) << std::fixed << std::setprecision(2) << vector_insert_time.count() << std::setw(15) << std::fixed << std::setprecision(2) << (list_insert_time.count() / vector_insert_time.count()) << std::endl;
-
-    std::cout << std::setw(20) << "Deletion Time"
-              << std::setw(15) << std::fixed << std::setprecision(2) << list_del_time.count()
-              << std::setw(15) << std::fixed << std::setprecision(2) << vector_del_time.count() 
-              << std::setw(15) << std::fixed << std::setprecision(2) << (list_del_time.count() / vector_del_time.count()) << std::endl;
-
-    std::cout << std::setw(20) << "Total Time"
-              << std::setw(15) << std::fixed << std::setprecision(2)
-              << list_insert_time.count() + list_del_time.count()
-              << std::setw(15) << std::fixed << std::setprecision(2)
-              << vector_insert_time.count() + vector_del_time.count() 
-              << std::setw(15) << std::fixed << std::setprecision(2)
-              << (list_insert_time.count() + list_del_time.count()) / (vector_insert_time.count() + vector_del_time.count()) << std::endl;
+    print_results(vector_insert_time, list_insert_time, vector_del_time, list_del_time);
 
     return 0;
 }
