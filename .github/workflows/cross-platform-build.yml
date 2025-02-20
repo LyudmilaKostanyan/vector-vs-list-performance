@@ -22,11 +22,16 @@ jobs:
 
       - name: Install dependencies (Linux & macOS)
         if: runner.os != 'Windows'
-        run: sudo apt update && sudo apt install -y g++ || brew install gcc
+        run: |
+          if [ $RUNNER_OS == "macOS" ]; then
+            brew install gcc
+          else
+            sudo apt update && sudo apt install -y g++
+          fi
 
       - name: Install dependencies (Windows)
         if: runner.os == 'Windows'
-        uses: msys2/setup-msys2@v2
+        uses: actions/setup-msys2@v2
         with:
           msystem: mingw64
           install: mingw-w64-x86_64-gcc
