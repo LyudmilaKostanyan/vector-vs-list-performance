@@ -17,7 +17,7 @@ void insert_sorted(Container& cont, int value) {
 }
 
 template <typename Container>
-void remove_by_index(Container& cont, int index) {
+void remove_by_index(Container& cont, long unsigned int index) {
     if (index < 0 || index >= cont.size()) return;
 
     auto it = cont.begin();
