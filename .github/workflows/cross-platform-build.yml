@@ -51,4 +51,6 @@ jobs:
 
       - name: Run tests (Windows)
         if: runner.os == 'Windows'
-        run: .\main.exe
+        shell: msys2 {0}
+        run: ./main.exe
+
