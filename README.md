@@ -103,7 +103,7 @@ A **cache line** is a small, fixed-size chunk of memory that the CPU fetches int
 3. **Compile the code:**
    Once you're in the project directory, compile the code with:
    ```bash
-   g++ -o benchmark main.cpp
+   g++ -std=c++20 -o benchmark main.cpp
    ```
 
 4. **Run the compiled executable:**
